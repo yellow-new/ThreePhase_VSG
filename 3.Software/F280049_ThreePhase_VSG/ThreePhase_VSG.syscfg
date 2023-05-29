@@ -1,0 +1,130 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --package "F28004x_100PZ" --part "F28004x_100PZ" --product "C2000WARE@4.01.00.00"
+ * @versions {"tool":"1.16.1+2960"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cla        = scripting.addModule("/driverlib/cla.js", {}, false);
+const cla1       = cla.addInstance();
+const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1      = epwm.addInstance();
+const epwm2      = epwm.addInstance();
+const epwm3      = epwm.addInstance();
+const fsirx      = scripting.addModule("/driverlib/fsirx.js", {}, false);
+const fsirx1     = fsirx.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cla1.$name              = "myCLA0";
+cla1.enable_CLA_TASK_2  = false;
+cla1.enable_CLA_TASK_3  = false;
+cla1.enable_CLA_TASK_4  = false;
+cla1.enable_CLA_TASK_5  = false;
+cla1.enable_CLA_TASK_6  = false;
+cla1.enable_CLA_TASK_7  = false;
+cla1.enable_CLA_TASK_8  = false;
+cla1.trigger_CLA_TASK_1 = "CLA_TRIGGER_FSIRXAINT1";
+cla1.cpuint_CLA_TASK_3  = false;
+cla1.cpuint_CLA_TASK_2  = false;
+cla1.cpuint_CLA_TASK_4  = false;
+cla1.cpuint_CLA_TASK_5  = false;
+cla1.cpuint_CLA_TASK_6  = false;
+cla1.cpuint_CLA_TASK_7  = false;
+cla1.cpuint_CLA_TASK_8  = false;
+cla1.cpuint_CLA_TASK_1  = false;
+
+epwm1.$name                                                      = "myEPWM0";
+epwm1.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.epwmTimebase_period                                        = 1249;
+epwm1.epwmTimebase_counterValue                                  = 500;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode            = true;
+epwm1.epwmDeadband_enableRED                                     = true;
+epwm1.epwmDeadband_enableFED                                     = true;
+epwm1.epwmEventTrigger_EPWM_SOC_A_triggerEnable                  = true;
+epwm1.epwmEventTrigger_EPWM_SOC_A_triggerSource                  = "EPWM_SOC_TBCTR_ZERO";
+epwm1.epwmDeadband_delayRED                                      = 50;
+epwm1.epwmDeadband_delayFED                                      = 50;
+epwm1.epwmEventTrigger_enableInterrupt                           = true;
+epwm1.epwmEventTrigger_interruptSource                           = "EPWM_INT_TBCTR_ZERO";
+epwm1.epwmEventTrigger_registerInterrupts                        = true;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO      = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwm.$assign                                               = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                     = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                     = "GPIO1";
+
+epwm2.$name                                                      = "myEPWM1";
+epwm2.epwmTimebase_period                                        = 2499;
+epwm2.epwmTimebase_counterValue                                  = 500;
+epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode            = true;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode            = true;
+epwm2.epwmDeadband_enableRED                                     = true;
+epwm2.epwmDeadband_enableFED                                     = true;
+epwm2.epwmDeadband_redShadowMode                                 = true;
+epwm2.epwmDeadband_fedShadowMode                                 = true;
+epwm2.epwmDeadband_outputSwapOutA                                = true;
+epwm2.epwmDeadband_outputSwapOutB                                = true;
+epwm2.epwmDeadband_delayRED                                      = 50;
+epwm2.epwmDeadband_delayFED                                      = 50;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO      = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwm.$assign                                               = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                     = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                     = "GPIO3";
+
+epwm3.$name                                                      = "myEPWM2";
+epwm3.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm3.epwmTimebase_period                                        = 2499;
+epwm3.epwmTimebase_counterValue                                  = 500;
+epwm3.epwmCounterCompare_cmpA                                    = 250;
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode            = true;
+epwm3.epwmDeadband_enableRED                                     = true;
+epwm3.epwmDeadband_enableFED                                     = true;
+epwm3.epwmDeadband_redShadowMode                                 = true;
+epwm3.epwmDeadband_fedShadowMode                                 = true;
+epwm3.epwmDeadband_inputFED                                      = "EPWM_DB_INPUT_EPWMB";
+epwm3.epwmDeadband_delayRED                                      = 50;
+epwm3.epwmDeadband_delayFED                                      = 50;
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO      = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
+
+fsirx1.$name                      = "myFSIRX0";
+fsirx1.dataWidth                  = "FSI_DATA_WIDTH_2_LANE";
+fsirx1.softwareFrameSize          = "16";
+fsirx1.enableInterrupt            = true;
+fsirx1.useInterrupts              = ["FSI_INT1"];
+fsirx1.fsirx.$assign              = "FSIRXA";
+fsirx1.fsirx.fsirx_d0Pin.$assign  = "GPIO40";
+fsirx1.fsirx.fsirx_d1Pin.$assign  = "GPIO31";
+fsirx1.fsirx.fsirx_clkPin.$assign = "GPIO39";
+
+inputxbar1.$name          = "myINPUTXBAR0";
+inputxbar1.inputsUsed     = ["inputxbar5Gpio"];
+inputxbar1.inputxbar5Gpio = "GPIO0";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm3.epwm.$suggestSolution           = "EPWM3";
+epwm3.epwm.epwm_aPin.$suggestSolution = "GPIO4";
+epwm3.epwm.epwm_bPin.$suggestSolution = "GPIO5";
