@@ -12,6 +12,28 @@ const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
 const epwm1      = epwm.addInstance();
 const epwm2      = epwm.addInstance();
 const epwm3      = epwm.addInstance();
+const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1      = gpio.addInstance();
+const gpio2      = gpio.addInstance();
+const gpio3      = gpio.addInstance();
+const gpio4      = gpio.addInstance();
+const gpio5      = gpio.addInstance();
+const gpio6      = gpio.addInstance();
+const gpio7      = gpio.addInstance();
+const gpio8      = gpio.addInstance();
+const gpio9      = gpio.addInstance();
+const gpio10     = gpio.addInstance();
+const gpio11     = gpio.addInstance();
+const gpio12     = gpio.addInstance();
+const gpio13     = gpio.addInstance();
+const gpio14     = gpio.addInstance();
+const gpio15     = gpio.addInstance();
+const gpio16     = gpio.addInstance();
+const gpio17     = gpio.addInstance();
+const gpio18     = gpio.addInstance();
+const gpio19     = gpio.addInstance();
+const gpio20     = gpio.addInstance();
+const gpio21     = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
 
@@ -86,6 +108,72 @@ epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTP
 epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
 epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
 epwm3.$name                                                      = "myEPWM3";
+
+gpio1.$name             = "RD";
+gpio1.writeInitialValue = true;
+gpio1.initialValue      = 1;
+gpio1.gpioPin.$assign   = "GPIO39";
+
+gpio2.$name           = "CON";
+gpio2.gpioPin.$assign = "GPIO30";
+
+gpio3.$name             = "RESET";
+gpio3.writeInitialValue = true;
+gpio3.gpioPin.$assign   = "GPIO14";
+
+gpio4.$name           = "BUSY";
+gpio4.gpioPin.$assign = "GPIO15";
+
+gpio5.$name           = "FRST";
+gpio5.gpioPin.$assign = "GPIO34";
+
+gpio6.$name           = "DB0";
+gpio6.gpioPin.$assign = "GPIO22_VFBSW";
+
+gpio7.$name           = "DB1";
+gpio7.gpioPin.$assign = "GPIO23_VSW";
+
+gpio8.$name           = "DB2";
+gpio8.gpioPin.$assign = "GPIO13";
+
+gpio9.$name           = "DB3";
+gpio9.gpioPin.$assign = "GPIO18_X2";
+
+gpio10.$name           = "DB4";
+gpio10.gpioPin.$assign = "GPIO58";
+
+gpio11.$name           = "DB5";
+gpio11.gpioPin.$assign = "GPIO27";
+
+gpio12.$name           = "DB6";
+gpio12.gpioPin.$assign = "GPIO26";
+
+gpio13.$name           = "DB7";
+gpio13.gpioPin.$assign = "GPIO40";
+
+gpio14.$name           = "DB8";
+gpio14.gpioPin.$assign = "GPIO31";
+
+gpio15.$name           = "DB9";
+gpio15.gpioPin.$assign = "GPIO24";
+
+gpio16.$name           = "DB10";
+gpio16.gpioPin.$assign = "GPIO17";
+
+gpio17.$name           = "DB11";
+gpio17.gpioPin.$assign = "GPIO16";
+
+gpio18.$name           = "DB12";
+gpio18.gpioPin.$assign = "GPIO33";
+
+gpio19.$name           = "DB13";
+gpio19.gpioPin.$assign = "GPIO12";
+
+gpio20.$name           = "DB14";
+gpio20.gpioPin.$assign = "GPIO25";
+
+gpio21.$name           = "DB15";
+gpio21.gpioPin.$assign = "GPIO28";
 
 inputxbar1.$name = "myINPUTXBAR0";
 

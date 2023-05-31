@@ -6,20 +6,23 @@
 //
 // Included Files
 //
-#include "driverlib.h"
-#include "device.h"
+#include "F28x_Project.h"
 #include "board.h"
-
+#include "adc_3ph_prc.h"
 
 //
 // Globals
 //
 volatile uint16_t CCR_data = 50;
+volatile uint16_t result[8] = {0};
+uint16_t i;
+//
+// Global Struct
+//
 
-//
-//
-//
-__interrupt void epwm1ISR(void);
+
+volatile union ADC_DATA  Adc_data;
+__interrupt void mainISR(void);
 
 
 //
@@ -51,7 +54,7 @@ void main(void)
     //
     // Assign the interrupt service routines to ePWM interrupts
     //
-    Interrupt_register(INT_EPWM1, &epwm1ISR);
+    Interrupt_register(INT_EPWM1, &mainISR);
 
     //
     // Disable sync(Freeze clock to PWM as well)
@@ -86,6 +89,24 @@ void main(void)
     //
     for(;;)
     {
+        //
+        // CON single start
+        //
+        GpioDataRegs.GPACLEAR.bit.GPIO30 = 1;
+        GpioDataRegs.GPASET.bit.GPIO30 = 1;
+        //read result in AD7606
+        while(GpioDataRegs.GPADAT.bit.GPIO15);
+        if(GpioDataRegs.GPADAT.bit.GPIO15 == 0)
+        {
+            
+            for( i = 0;i<8;i++)
+            {
+                data_get(&Adc_data);
+                result[i]=Adc_data.result;
+                if(i ==0 &&  GpioDataRegs.GPBDAT.bit.GPIO34 != 1) {break;}
+            }
+        }
+        
         NOP;
     }
 }
@@ -93,7 +114,7 @@ void main(void)
 //
 // epwm1ISR - ePWM 1 ISR
 //
-__interrupt void epwm1ISR(void)
+__interrupt void mainISR(void)
 {
 
     //
