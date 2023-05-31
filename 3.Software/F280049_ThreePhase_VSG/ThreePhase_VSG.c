@@ -10,6 +10,7 @@
 #include "device.h"
 #include "board.h"
 
+
 //
 // Globals
 //
@@ -18,25 +19,12 @@ volatile uint16_t CCR_data = 50;
 //
 //
 //
-__interrupt void INT_myEPWM0_ISR(void);
-__attribute__((interrupt)) void Cla1Task1();
+__interrupt void epwm1ISR(void);
 
 
 //
-// ThreePhase' Current Voltage
+// Main
 //
-
-//
-//
-//
-
-//
-//
-//
-
-
-
-
 void main(void)
 {
     //
@@ -45,7 +33,7 @@ void main(void)
     Device_init();
 
     //
-    // Disable pin locks and enable internal pullups.
+    // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
 
@@ -61,58 +49,62 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
-    // Board Initialization
+    // Assign the interrupt service routines to ePWM interrupts
     //
+    Interrupt_register(INT_EPWM1, &epwm1ISR);
 
+    //
+    // Disable sync(Freeze clock to PWM as well)
+    //
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+
+    //
+    // Configure GPIO0/1 , GPIO2/3 and GPIO4/5 as ePWM1A/1B, ePWM2A/2B and
+    // ePWM3A/3B pins respectively
+    // Configure EPWM Modules
+    //
     Board_init();
 
     //
-    // Enable global Interrupts and higher priority real-time debug events:
+    // Enable sync and clock to PWM
     //
-    EINT;  // Enable Global interrupt INTM
-    ERTM;  // Enable Global realtime interrupt DBGM
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
     //
-    // Take conversions indefinitely in loop
+    // Enable ePWM interrupts
     //
-    do
+    Interrupt_enable(INT_EPWM1);
+
+    //
+    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    //
+    EINT;
+    ERTM;
+
+    //
+    // IDLE loop. Just sit and loop forever (optional):
+    //
+    for(;;)
     {
-
-
-        //
-        // change PWM CCR RLG
-        //
-        EPWM_setCounterCompareValue(myEPWM2_BASE, EPWM_COUNTER_COMPARE_A, CCR_data);
-
-        //
-        // Software breakpoint, hit run again to get updated conversions
-        //
-        asm("   ESTOP0");
-
+        NOP;
     }
-    while(1);
+}
+
+//
+// epwm1ISR - ePWM 1 ISR
+//
+__interrupt void epwm1ISR(void)
+{
+
+    //
+    // Clear INT flag for this timer
+    //
+    EPWM_clearEventTriggerInterruptFlag(myEPWM1_BASE);
+
+    //
+    // Acknowledge interrupt group
+    //
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 }
 
 
-
-#pragma CODE_SECTION(INT_myEPWM0_ISR,".TI.ramfunc");
-
-__interrupt void INT_myEPWM0_ISR()
-    {
-
-
-
-    }
-
-
-__attribute__((interrupt)) void Cla1Task1()
-    {
-
-
-
-
-    }
-
-//
-// End of file
-//

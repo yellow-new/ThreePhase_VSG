@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "device.h": "c",
+        "board.h": "c",
+        "spll_3ph_ddsrf.h": "c"
+    }
+}
