@@ -2,7 +2,7 @@
 
 void data_get(volatile union ADC_DATA  *data)
 {
-    GpioDataRegs.GPBCLEAR.bit.GPIO39 = 1;
+    GpioDataRegs.GPBCLEAR.bit.GPIO39 = 1;  //RD begin
     DEVICE_DELAY_US(1);  
     data->bit->DB_0 = GpioDataRegs.GPADAT.bit.GPIO22;
     data->bit->DB_1 = GpioDataRegs.GPADAT.bit.GPIO23;
@@ -20,9 +20,8 @@ void data_get(volatile union ADC_DATA  *data)
     data->bit->DB_13 = GpioDataRegs.GPADAT.bit.GPIO12;
     data->bit->DB_14 = GpioDataRegs.GPADAT.bit.GPIO25;
     data->bit->DB_15 = GpioDataRegs.GPADAT.bit.GPIO28;
-
-     DEVICE_DELAY_US(1); 
-    GpioDataRegs.GPBSET.bit.GPIO39 = 1;
+    DEVICE_DELAY_US(1); 
+    GpioDataRegs.GPBSET.bit.GPIO39 = 1; //RD begin end
 }
 
 

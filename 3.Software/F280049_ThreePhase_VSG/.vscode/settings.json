@@ -6,6 +6,8 @@
         "spll_3ph_ddsrf.h": "c",
         "adc_3ph_prc.h": "c",
         "f28x_project.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "math.h": "c",
+        "svgen.h": "c"
     }
 }

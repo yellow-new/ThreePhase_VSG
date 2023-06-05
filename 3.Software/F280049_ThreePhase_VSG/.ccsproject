@@ -12,6 +12,6 @@
 	<templateProperties value="id=adc_ex4_soc_software_sync.projectspec.adc_ex4_soc_software_sync"/>
 	<origin value="C:\ti\c2000\C2000Ware_4_01_00_00\driverlib\f28004x\examples\adc\CCS\adc_ex4_soc_software_sync.projectspec"/>
 	<filesToOpen value=""/>
-	<connection value="common/targetdb/connections/TIXDS100v2_Connection.xml"/>
+	<connection value="common/targetdb/connections/TIXDS100v3_Dot7_Connection.xml"/>
 	<isTargetManual value="false"/>
 </projectOptions>

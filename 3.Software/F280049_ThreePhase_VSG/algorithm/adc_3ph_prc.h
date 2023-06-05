@@ -7,7 +7,7 @@
 
 
 
-struct ADC_BITS {                     
+ struct ADC_BITS {
     Uint16 DB_0:1;
     Uint16 DB_1:1;                     
     Uint16 DB_2:1;                    
